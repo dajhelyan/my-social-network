@@ -1,3 +1,5 @@
+import { registerUser } from '../lib/view-controller/view-controller-firebase.js'
+
 export const registerView = () => {
     const registerTemplate = `
     <img src="../img/adorable-animal-blur-406014.jpg" class="logo">
@@ -8,10 +10,14 @@ export const registerView = () => {
     <input id="password" type="password" placeholder="Password">
     <button id="btnLogIn" type="button">Log in</button>
     <p>¿Tienes una cuenta? Inicia sesión.</p>
-    
     `
-    divElement = document.createElement('div');
+    const divElement = document.createElement('div');
     divElement.innerHTML = registerTemplate;
+
+    const btnLogIn = divElement.querySelector('#btnLogIn');
+    btnLogIn.addEventListener('click', () => {
+        registerUser()
+    })
 
 
     return divElement;
