@@ -1,4 +1,4 @@
-import { registerPage } from '../lib/view-controller/view-controller-firebase.js' 
+import { registerPage, logInUser } from '../lib/view-controller/view-controller-firebase.js' 
 
 export const logInView = () => {
     const logInTemplate = `
@@ -20,6 +20,11 @@ export const logInView = () => {
     const btnUserRegister = divElement.querySelector('#btnUserRegister');
     btnUserRegister.addEventListener('click', () => {
         registerPage()
+    })
+
+    const btnLogIn = divElement.querySelector('#btnLogIn');
+    btnLogIn.addEventListener('click', () => {
+        logInUser()
     })
 
     return divElement;
