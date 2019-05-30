@@ -1,4 +1,4 @@
-import { registerPage, logInUser, UserSignInGoogle, userSignInFb } from '../lib/view-controller/view-controller-firebase.js' 
+import { registerPage, logInUser, userSignInGoogle, userSignInFb } from '../lib/view-controller/view-controller-firebase.js' 
 
 export const logInView = () => {
     const logInTemplate = `
@@ -31,7 +31,7 @@ export const logInView = () => {
 
     const btnSigInGoogle = divElement.querySelector('#btnSigInGoogle');
     btnSigInGoogle.addEventListener('click', () => {
-        UserSignInGoogle()
+        userSignInGoogle()
     })
     
     const btnSigInFb = divElement.querySelector('#btnSingInFb')

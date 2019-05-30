@@ -6,7 +6,8 @@ export const changeView = (route) => {
     switch (route) {
         case '':
         case '#':
-        case '#/': 
+        case '#/':
+        case '#/login': 
             { return container.appendChild(components.login()) };
         case '#/register': 
             { return container.appendChild(components.register()) }

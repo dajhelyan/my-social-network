@@ -1,8 +1,8 @@
-import { register, login, SignInGoogle, SignInFacebook } from '../controller/controller-firebase.js';
-export const changeHash = (hash) => { window.location.hash = hash }
+import { register, login, signInGoogle, signInFacebook, signOut } from '../controller/controller-firebase.js';
+export const changeHash = (hash) => { window.location.hash = hash };
 
 export const registerPage = () => {
-    return changeHash('#/register')
+    return changeHash('#/register');
 }
 
 export const registerUser = () => {
@@ -34,12 +34,12 @@ export const logInUser = () => {
         .then(() => {
             return changeHash('#/post');
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
         })
 }
 
-export const UserSignInGoogle = () => {
-    SignInGoogle()
+export const userSignInGoogle = () => {
+    signInGoogle()
         .then(() => {
             changeHash('#/post');
         }).catch((error) => {
@@ -48,10 +48,18 @@ export const UserSignInGoogle = () => {
 }
 
 export const userSignInFb = () => {
-    SignInFacebook()
+    signInFacebook()
     .then(() => {
-        changeHash('#/post')
+        changeHash('#/post');
     }).catch((error) => {
-        console.log(error)
+        console.log(error);
+    })
+}
+
+export const userSignOut = () => {
+    signOut()
+    .then(() => changeHash('#/login'))
+    .catch((error) => {
+        console.log(error);
     })
 }
