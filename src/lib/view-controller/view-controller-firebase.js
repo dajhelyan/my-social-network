@@ -1,4 +1,4 @@
-import { register, login, SignInGoogle } from '../controller/controller-firebase.js';
+import { register, login, SignInGoogle, SignInFacebook } from '../controller/controller-firebase.js';
 export const changeHash = (hash) => { window.location.hash = hash }
 
 export const registerPage = () => {
@@ -45,4 +45,13 @@ export const UserSignInGoogle = () => {
         }).catch((error) => {
             console.log(error)
         })
+}
+
+export const userSignInFb = () => {
+    SignInFacebook()
+    .then(() => {
+        changeHash('#/post')
+    }).catch((error) => {
+        console.log(error)
+    })
 }
