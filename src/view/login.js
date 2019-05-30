@@ -8,6 +8,7 @@ export const logInView = () => {
     <p>¡Bienvenidx, dogLover!</p>
     <input id="emailExisting" type="text" placeholder="Email">
     <input id="passwordExisting" type="password" placeholder="Password">
+    <p id="messageError"></p>
     <button id="btnLogIn" type="button">Log in</button>
     <p>O bien ingresa con...</p>
     <img id="btnSigInGoogle" src="../img/001-google.png">

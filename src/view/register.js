@@ -8,7 +8,8 @@ export const registerView = () => {
     <input id="nameUser" placeholder="Nombres y apellido">
     <input id="email" type="text" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
-    <button id="btnLogIn" type="button">Log in</button>
+    <p id="messageError"></p>
+    <button id="btnLogIn" type="button">Register</button>
     <p>¿Tienes una cuenta? Inicia sesión.</p>
     `
     const divElement = document.createElement('div');

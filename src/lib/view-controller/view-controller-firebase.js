@@ -1,6 +1,11 @@
 import { register, login, signInGoogle, signInFacebook, signOut } from '../controller/controller-firebase.js';
 export const changeHash = (hash) => { window.location.hash = hash };
 
+const printMessageError = (error) => {
+    const messageError = document.querySelector('#messageError')
+    messageError.innerHTML = error.message;
+}
+
 export const registerPage = () => {
     return changeHash('#/register');
 }
@@ -14,7 +19,7 @@ export const registerUser = () => {
         .then(() => {
             changeHash('#/post');
         }).catch((error) => {
-            console.log(error);
+            printMessageError(error);
         })
 
     /* .then(objUser => {
@@ -34,7 +39,7 @@ export const logInUser = () => {
         .then(() => {
             return changeHash('#/post');
         }).catch((error) => {
-            console.log(error);
+            printMessageError(error);
         })
 }
 
@@ -43,7 +48,7 @@ export const userSignInGoogle = () => {
         .then(() => {
             changeHash('#/post');
         }).catch((error) => {
-            console.log(error)
+            printMessageError(error);
         })
 }
 
@@ -52,7 +57,7 @@ export const userSignInFb = () => {
     .then(() => {
         changeHash('#/post');
     }).catch((error) => {
-        console.log(error);
+        printMessageError(error);
     })
 }
 
@@ -60,6 +65,6 @@ export const userSignOut = () => {
     signOut()
     .then(() => changeHash('#/login'))
     .catch((error) => {
-        console.log(error);
+        printMessageError(error);
     })
 }
