@@ -1,4 +1,4 @@
-import { registerPage, logInUser } from '../lib/view-controller/view-controller-firebase.js' 
+import { registerPage, logInUser, UserSignInGoogle } from '../lib/view-controller/view-controller-firebase.js' 
 
 export const logInView = () => {
     const logInTemplate = `
@@ -10,6 +10,7 @@ export const logInView = () => {
     <input id="passwordExisting" type="password" placeholder="Password">
     <button id="btnLogIn" type="button">Log in</button>
     <p>O bien ingresa con...</p>
+    <img id="btnSigInGoogle" src="../img/001-google.png">
     <p>¿No tienes una cuenta?</p>
     <button type="button" id="btnUserRegister">Regístrate.</button>
     `
@@ -25,6 +26,11 @@ export const logInView = () => {
     const btnLogIn = divElement.querySelector('#btnLogIn');
     btnLogIn.addEventListener('click', () => {
         logInUser()
+    })
+
+    const btnSigInGoogle = divElement.querySelector('#btnSigInGoogle');
+    btnSigInGoogle.addEventListener('click', () => {
+        UserSignInGoogle()
     })
 
     return divElement;
