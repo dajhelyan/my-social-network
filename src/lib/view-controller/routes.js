@@ -1,5 +1,7 @@
 import { components } from '../../view/index.js'
-
+import { observer } from '../controller/controller-firebase.js'
+import { getUserData } from '../controller/controller-firestore.js'
+ 
 export const changeView = (route) => {
     const container = document.getElementById('container');
     container.innerHTML = '';
@@ -12,7 +14,17 @@ export const changeView = (route) => {
         case '#/register': 
             { return container.appendChild(components.register()) }
         case '#/post':
-            { return container.appendChild(components.post()) }    
+            const stateUser = (cbthatRecivesData) => {
+                return observer(getUserData, cbthatRecivesData)
+            }
+
+            const cbthatRecivesDataUser = (objUser) => {
+                container.innerHTML = '';
+                container.appendChild(components.post(objUser)) 
+
+            }
+
+            stateUser(cbthatRecivesDataUser)
         default:
             break;    
     }

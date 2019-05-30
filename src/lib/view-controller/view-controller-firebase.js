@@ -1,4 +1,5 @@
 import { register, login, signInGoogle, signInFacebook, signOut } from '../controller/controller-firebase.js';
+import { userData } from '../controller/controller-firestore.js'
 export const changeHash = (hash) => { window.location.hash = hash };
 
 const printMessageError = (error) => {
@@ -11,24 +12,24 @@ export const registerPage = () => {
 }
 
 export const registerUser = () => {
-    /* const nameUser = document.querySelector('#nameUser').value; */
+    const nameUser = document.querySelector('#nameUser').value;
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
 
     register(email, password)
-        .then(() => {
+        .then(res => {
+            const objUSer = {
+                displayName: nameUser,
+                email: email,
+                photoURL: "../img/585e4bf3cb11b227491c339a.png",
+                uid: res.user.uid
+
+            }
+            userData(objUSer)
             changeHash('#/post');
         }).catch((error) => {
             printMessageError(error);
         })
-
-    /* .then(objUser => {
-        objUser = {
-            name: nameUser,
-            email: email,
-   
-        }
-    }) */
 }
 
 export const logInUser = () => {
@@ -36,7 +37,8 @@ export const logInUser = () => {
     const passwordExisting = document.querySelector('#passwordExisting').value;
 
     login(emailExisting, passwordExisting)
-        .then(() => {
+        .then(res => {
+            userData(res.user);
             return changeHash('#/post');
         }).catch((error) => {
             printMessageError(error);
@@ -45,8 +47,9 @@ export const logInUser = () => {
 
 export const userSignInGoogle = () => {
     signInGoogle()
-        .then(() => {
-            changeHash('#/post');
+        .then(res => {
+            userData(res.user);
+            return changeHash('#/post');
         }).catch((error) => {
             printMessageError(error);
         })
@@ -54,8 +57,9 @@ export const userSignInGoogle = () => {
 
 export const userSignInFb = () => {
     signInFacebook()
-    .then(() => {
-        changeHash('#/post');
+    .then(res => {
+        userData(res.user)
+        return changeHash('#/post');
     }).catch((error) => {
         printMessageError(error);
     })
@@ -65,6 +69,6 @@ export const userSignOut = () => {
     signOut()
     .then(() => changeHash('#/login'))
     .catch((error) => {
-        printMessageError(error);
+        console.log(error);
     })
 }
