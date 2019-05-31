@@ -23,4 +23,22 @@ export const getUserData = (uidUser) => {
                 console.log('error')
             }
         })
-}        
+}
+
+export const dataPost = (user, post) => {
+    const db = firebase.firestore();
+    db.collection('post').add({
+        name: user.displayName,
+        email: user.email,
+        uid: user.uid,
+        post: post,
+        state: true,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+}
