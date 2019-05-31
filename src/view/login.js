@@ -2,8 +2,7 @@ import { registerPage, logInUser, userSignInGoogle, userSignInFb } from '../lib/
 
 export const logInView = () => {
     const logInTemplate = `
-    <img src="../img/adorable-animal-blur-406014.jpg" class="logo" width="100%";
-    >
+    <img src="../img/social-pet.png" class="logo" width="100%">;
     <h1>Social Pet</h1>
     <p>¡Bienvenidx, dogLover!</p>
     <input id="emailExisting" type="text" placeholder="Email">
@@ -13,17 +12,13 @@ export const logInView = () => {
     <p>O bien ingresa con...</p>
     <img id="btnSigInGoogle" src="../img/001-google.png">
     <img id="btnSingInFb" src="../img/002-facebook.png" >
-    <p>¿No tienes una cuenta?</p>
-    <button type="button" id="btnUserRegister">Regístrate.</button>
+    <p>¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
+    
     `
     const divElement = document.createElement('div');
     divElement.innerHTML = logInTemplate;
     divElement.classList.add('show');
 
-    const btnUserRegister = divElement.querySelector('#btnUserRegister');
-    btnUserRegister.addEventListener('click', () => {
-        registerPage()
-    })
 
     const btnLogIn = divElement.querySelector('#btnLogIn');
     btnLogIn.addEventListener('click', () => {

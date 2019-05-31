@@ -23,22 +23,7 @@ export const observer = (callbackGetUserData, cbthatRecivesDataUse) => firebase.
             .then(objUser => {
                 cbthatRecivesDataUse(objUser);
             })
-    } else {
-        console.log('no existe usuario activo');
     }
 });
-
-/* export const observador = (cbTraeData, cbQueRecibeLaData) => firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        const uid = user.uid;     
-        cbTraeData(uid)
-            .then(objData => {
-                cbQueRecibeLaData(objData)
-            })
-        //console.log('existe usuario activo');
-    } else {
-        console.log('no existe usuario activo');
-    }
-}); */
 
 export const signOut = () => firebase.auth().signOut();

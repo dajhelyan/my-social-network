@@ -21,7 +21,6 @@ export const changeView = (route) => {
             const cbthatRecivesDataUser = (objUser) => {
                 container.innerHTML = '';
                 container.appendChild(components.post(objUser)) 
-
             }
 
             stateUser(cbthatRecivesDataUser)

@@ -37,8 +37,7 @@ export const logInUser = () => {
     const passwordExisting = document.querySelector('#passwordExisting').value;
 
     login(emailExisting, passwordExisting)
-        .then(res => {
-            userData(res.user);
+        .then(() => {
             return changeHash('#/post');
         }).catch((error) => {
             printMessageError(error);
