@@ -8,7 +8,7 @@ const printPost = (objPost) => {
         <span class="nameUser">
         <span>publicado por ${objPost.name}</span>
         </span>
-        <button data-id="delete">delete</button>
+        <button data-id="delete${objPost.id}">delete</button>
         <div>${objPost.post}</div>
         <span>
         <button id="btnImg">imagen</button>
@@ -17,12 +17,12 @@ const printPost = (objPost) => {
     `
     // agegando evento al boton delete
     // haciendo un querySelector por atributo
-    const postDelete = divPostElement.querySelector(`[data-id="delete"]`)
+    const postDelete = divPostElement.querySelector(`[data-id="delete${objPost.id}"]`)
     postDelete.addEventListener('click', () => {
-        deletePost(objPost)});
-/*     console.log(objPost.id);
- */    
-return divPostElement
+        deletePost(objPost)
+    });
+    
+    return divPostElement
 }
 
 export const postView = (objUser, post) => {
@@ -44,11 +44,11 @@ export const postView = (objUser, post) => {
     const printUser = divElement.querySelector('#printUser')
     printUser.appendChild(viewUser(objUser))
 
-    const btnpublishPost =  divElement.querySelector('#publishPost');
+    const btnpublishPost = divElement.querySelector('#publishPost');
 
     const ul = divElement.querySelector('#list-post')
     post.forEach(note => {
-       // console.log(note, 'h')
+        // console.log(note, 'h')
         ul.appendChild(printPost(note))
     });
 

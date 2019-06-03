@@ -56,6 +56,13 @@ export const getCollectionPost = (callback) => {
     }) 
 };
 
+export const updatePost = (id, post) => {
+    let docRef = firebase.firestore().collection('post').doc(id);
+    return docRef.update({
+        post: post
+    })
+}
+
 export const deletePostId = (objId) => {
     firebase.firestore().collection("post").doc(objId).delete();
 }

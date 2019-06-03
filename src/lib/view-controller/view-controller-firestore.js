@@ -1,4 +1,4 @@
-import { dataPost, deletePostId } from '../controller/controller-firestore.js'
+import { dataPost, deletePostId, updatePost } from '../controller/controller-firestore.js'
 
 export const addPost = () => {
 /*     event.preventDefault()
@@ -6,19 +6,22 @@ export const addPost = () => {
     const newPost = document.querySelector('#newPost').value;
     if (newPost !== '') {
         dataPost(newPost) 
+        newPost.innerHTML = '';
+    } else {
+        console.log('error')
+    }
+}
+
+export const deletePost = (objPost) => {
+    const user = firebase.auth().currentUser;
+    if (objPost.uid === user.uid) {
+        deletePostId(objPost.id);
     } else {
         console.log('error')
     }
     
-    /* .then(() => {3
-        newPost = '';
-        console.log('nota agregada')
-    }).catch(() => {
-        newPost = '';
-        console.log('error')
-    }) */
 }
 
-export const deletePost = (objPost) => {
-    deletePostId(objPost.id);
+export const postUpdate = (objPost, post) => {
+    updatePost(objPost.id, post)
 }
