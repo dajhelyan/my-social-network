@@ -1,8 +1,8 @@
-import { registerPage, logInUser, userSignInGoogle, userSignInFb } from '../lib/view-controller/view-controller-firebase.js' 
+import { logInUser, userSignInGoogle, userSignInFb } from '../lib/view-controller/view-controller-firebase.js' 
 
 export const logInView = () => {
     const logInTemplate = `
-    <img src="../img/social-pet.png" class="logo" width="100%">;
+    <img src="../img/social-pet.png" class="logo" width="100%">
     <h1>Social Pet</h1>
     <p>¡Bienvenidx, dogLover!</p>
     <input id="emailExisting" type="text" placeholder="Email">
@@ -13,7 +13,6 @@ export const logInView = () => {
     <img id="btnSigInGoogle" src="../img/001-google.png">
     <img id="btnSingInFb" src="../img/002-facebook.png" >
     <p>¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
-    
     `
     const divElement = document.createElement('div');
     divElement.innerHTML = logInTemplate;

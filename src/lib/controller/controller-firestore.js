@@ -6,7 +6,6 @@ export const userData = (user) => {
         email: user.email,
         photoUrl: user.photoURL,
         uid: user.uid
-
     })
 }
 
@@ -25,7 +24,8 @@ export const getUserData = (uidUser) => {
         })
 }
 
-export const dataPost = (user, post) => {
+export const dataPost = (post) => {
+    const user = firebase.auth().currentUser;
     const db = firebase.firestore();
     db.collection('post').add({
         name: user.displayName,
@@ -33,7 +33,7 @@ export const dataPost = (user, post) => {
         uid: user.uid,
         post: post,
         state: true,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        date: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -42,3 +42,16 @@ export const dataPost = (user, post) => {
         console.error("Error adding document: ", error);
     });
 }
+
+export const getCollectionPost = (callback) => {
+    const db = firebase.firestore();
+    const allPost = db.collection('post').orderBy("date", "desc")
+    allPost.onSnapshot((querySnapshot) => {
+        const data = []
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            data.push({ id: doc.id, ...doc.data()});
+        });
+        callback(data);
+    }) 
+};

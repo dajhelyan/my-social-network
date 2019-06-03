@@ -1,6 +1,6 @@
 import { components } from '../../view/index.js'
 import { observer } from '../controller/controller-firebase.js'
-import { getUserData } from '../controller/controller-firestore.js'
+import { getUserData, getCollectionPost } from '../controller/controller-firestore.js'
  
 export const changeView = (route) => {
     const container = document.getElementById('container');
@@ -18,12 +18,29 @@ export const changeView = (route) => {
                 return observer(getUserData, cbthatRecivesData)
             }
 
-            const cbthatRecivesDataUser = (objUser) => {
+            /* const cbthatRecivesDataUser = (objUser) => {
+                console.log(objUser, '123')
                 container.innerHTML = '';
                 container.appendChild(components.post(objUser)) 
-            }
+            } */
+    
+            stateUser((objUser) => {
+                getCollectionPost((post) => {
+                    console.log(post);
+                    
+                    container.innerHTML = '';
+                    container.appendChild(components.post(objUser, post))
+                }) 
+            })
 
-            stateUser(cbthatRecivesDataUser)
+            /* getCollectionPost((post) => {
+                console.log(post);
+                
+                container.innerHTML = '';
+                container.appendChild(components.post(post))
+            }) */
+            
+
         default:
             break;    
     }

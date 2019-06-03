@@ -1,8 +1,7 @@
 const firebasemock = require('firebase-mock');
 const mockauth = new firebasemock.MockFirebase();
 const mockfirestore = new firebasemock.MockFirestore();
-mockfirestore.autoFlush();
-mockauth.autoFlush();
+
 
 global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
@@ -11,6 +10,8 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockfirestore
 );
 
+mockfirestore.autoFlush();
+mockauth.autoFlush();
 
 import { register, login, signInGoogle, signInFacebook, signOut, observer } from '../src/lib/controller/controller-firebase.js'
 
@@ -87,15 +88,36 @@ describe('signOut', () => {
   })
 })
 
- const cbGetUserData = (uid) => new Promise((resolve, reject) => {
+
+const cbGetUserData = (uid) => new Promise((resolve, reject) => {
   resolve({ uid })
- });
+});
+
   
 
 describe('observer', () => {
-  it ('observar el estado de un usuario y trae su data', () => {
-    observer(cbGetUserData, (user) => {
+  global.firebase.auth().changeAuthState({
+    uid: null
+  })
+
+  it('observer hfhj', (done) => {
+    observer( (cbGetUserData) => {
+      console.log(cbGetUserData)
+      expect(user.uid).toBe(null)
+      done()
+    })
+    })
+})
+
+/* describe('observer1', () => {
+  it ('observar el estado de un usuario y trae su data', (done) => {
+
+  const cbGetUserData2 = (uid) => new Promise((resolve, reject) => {
+    resolve({ uid })
+  });
+    observer(cbGetUserData2, (user) => {
       expect(user.uid).toBe('test')
+      done()
     })
     // metodo de firebase que simula la existencia de un usuario para obtener un uid
     global.firebase.auth().changeAuthState({
@@ -103,4 +125,7 @@ describe('observer', () => {
       token: 'token'
     })
   })
+
 })
+ */
+ 

@@ -23,6 +23,8 @@ export const observer = (callbackGetUserData, cbthatRecivesDataUse) => firebase.
             .then(objUser => {
                 cbthatRecivesDataUse(objUser);
             })
+    } else {
+        console.log('no existe usuario activo')
     }
 });
 
