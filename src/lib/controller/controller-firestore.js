@@ -1,7 +1,7 @@
 
 export const userData = (user) => {
     const db = firebase.firestore();
-    db.collection('user').doc(`${user.uid}`).set({
+    db.collection("user").doc(`${user.uid}`).set({
         name: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
@@ -27,7 +27,7 @@ export const getUserData = (uidUser) => {
 export const dataPost = (post) => {
     const user = firebase.auth().currentUser;
     const db = firebase.firestore();
-    db.collection('post').add({
+    db.collection("post").add({
         name: user.displayName,
         email: user.email,
         uid: user.uid,
@@ -55,3 +55,7 @@ export const getCollectionPost = (callback) => {
         callback(data);
     }) 
 };
+
+export const deletePostId = (objId) => {
+    firebase.firestore().collection("post").doc(objId).delete();
+}

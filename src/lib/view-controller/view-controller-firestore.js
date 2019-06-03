@@ -1,4 +1,4 @@
-import { dataPost } from '../controller/controller-firestore.js'
+import { dataPost, deletePostId } from '../controller/controller-firestore.js'
 
 export const addPost = () => {
 /*     event.preventDefault()
@@ -17,4 +17,8 @@ export const addPost = () => {
         newPost = '';
         console.log('error')
     }) */
+}
+
+export const deletePost = (objPost) => {
+    deletePostId(objPost.id);
 }

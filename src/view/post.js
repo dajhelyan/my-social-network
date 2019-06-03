@@ -1,6 +1,6 @@
 import { userSignOut } from '../lib/view-controller/view-controller-firebase.js';
 import { viewUser } from './info-user.js'
-import { addPost } from '../lib/view-controller/view-controller-firestore.js'
+import { addPost, deletePost } from '../lib/view-controller/view-controller-firestore.js'
 
 const printPost = (objPost) => {
     const divPostElement = document.createElement('div');
@@ -8,12 +8,20 @@ const printPost = (objPost) => {
         <span class="nameUser">
         <span>publicado por ${objPost.name}</span>
         </span>
+        <button data-id="delete">delete</button>
         <div>${objPost.post}</div>
         <span>
         <button id="btnImg">imagen</button>
         <button id="btncompartir">compartir</button>
         </span>
     `
+    // agegando evento al boton delete
+    // haciendo un querySelector por atributo
+    const postDelete = divPostElement.querySelector(`[data-id="delete"]`)
+    postDelete.addEventListener('click', () => {
+        deletePost(objPost)});
+/*     console.log(objPost.id);
+ */    
 return divPostElement
 }
 
@@ -21,7 +29,7 @@ export const postView = (objUser, post) => {
     const postTemplate = `
     <div id="printUser">
     </div>
-    <input id="newPost" placeholder="¿Que quieres compartir?">
+    <textarea id="newPost" placeholder="¿Que quieres compartir?"></textarea>
     <button id="publishPost" type="button">Compartir</button> 
     <button id="btnSignOut" type="button">Cerrar sesión</button>
     <!--printPost-->
@@ -40,7 +48,7 @@ export const postView = (objUser, post) => {
 
     const ul = divElement.querySelector('#list-post')
     post.forEach(note => {
-        console.log(note, 'h')
+       // console.log(note, 'h')
         ul.appendChild(printPost(note))
     });
 
