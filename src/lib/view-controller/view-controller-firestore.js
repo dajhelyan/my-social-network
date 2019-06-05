@@ -2,11 +2,13 @@ import { dataPost, deletePostId, updatePost } from '../controller/controller-fir
 
 export const addPost = () => {
 /*     event.preventDefault()
- */
+ */ const user = firebase.auth().currentUser;
+    console.log(user)
     const newPost = document.querySelector('#newPost').value;
+    const state = document.querySelector('#stateUser').value;
+
     if (newPost !== '') {
-        dataPost(newPost) 
-        newPost.innerHTML = '';
+        dataPost(user, newPost, state) 
     } else {
         console.log('error')
     }

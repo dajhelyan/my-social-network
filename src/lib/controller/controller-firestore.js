@@ -24,15 +24,15 @@ export const getUserData = (uidUser) => {
         })
 }
 
-export const dataPost = (post) => {
-    const user = firebase.auth().currentUser;
+export const dataPost = (user, post, state) => {
+    
     const db = firebase.firestore();
     db.collection("post").add({
         name: user.displayName,
         email: user.email,
         uid: user.uid,
         post: post,
-        state: true,
+        state: state,
         date: firebase.firestore.FieldValue.serverTimestamp()
     })
     .then(function (docRef) {
@@ -45,12 +45,17 @@ export const dataPost = (post) => {
 
 export const getCollectionPost = (callback) => {
     const db = firebase.firestore();
+    const user = firebase.auth().currentUser;
     const allPost = db.collection('post').orderBy("date", "desc")
     allPost.onSnapshot((querySnapshot) => {
         const data = []
         querySnapshot.forEach((doc) => {
+            if (doc.data().state === "private" && user.uid !== doc.data().uid) {
+                return data;
+            } else {
+                data.push({ id: doc.id, ...doc.data()});
+            }
             // doc.data() is never undefined for query doc snapshots
-            data.push({ id: doc.id, ...doc.data()});
         });
         callback(data);
     }) 

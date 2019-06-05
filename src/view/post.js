@@ -6,13 +6,13 @@ const printPost = (objPost) => {
     const divPostElement = document.createElement('div');
     divPostElement.innerHTML = `
         <span class="nameUser">
-        <span>publicado por ${objPost.name}</span>
+            <span>publicado por ${objPost.name}</span>
         </span>
         <button data-id="delete${objPost.id}">delete</button>
         <div>${objPost.post}</div>
         <span>
         <button id="btnImg">imagen</button>
-        <button id="btncompartir">compartir</button>
+        <button id="btncompartir">comentar</button>
         </span>
     `
     // agegando evento al boton delete
@@ -29,16 +29,22 @@ export const postView = (objUser, post) => {
     const postTemplate = `
     <div id="printUser">
     </div>
-    <textarea id="newPost" placeholder="¿Que quieres compartir?"></textarea>
-    <button id="publishPost" type="button">Compartir</button> 
-    <button id="btnSignOut" type="button">Cerrar sesión</button>
+    <div>
+        <textarea id="newPost" placeholder="¿Que quieres compartir?"></textarea>
+        <select id="stateUser">
+            <option value="public">Mis amigos</option>
+            <option value="private">Solo yo</option>
+        </select>
+        <button id="publishPost" type="button">Compartir</button> 
+        <button id="btnSignOut" type="button">Cerrar sesión</button>
+    </div>
     <!--printPost-->
     <section>
-    <ul id="list-post">
-    </ul>
+        <ul id="list-post">
+        </ul>
     </section>
     `
-    const divElement = document.createElement('div');
+    const divElement = document.createElement('section');
     divElement.innerHTML = postTemplate;
 
     const printUser = divElement.querySelector('#printUser')
