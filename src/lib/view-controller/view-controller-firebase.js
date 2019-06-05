@@ -18,14 +18,14 @@ export const registerUser = () => {
 
     register(email, password)
         .then(res => {
-            const objUSer = {
+            const objUser = {
                 displayName: nameUser,
                 email: email,
                 photoURL: "../img/585e4bf3cb11b227491c339a.png",
                 uid: res.user.uid
 
             }
-            userData(objUSer)
+            userData(objUser)
             changeHash('#/post');
         }).catch((error) => {
             printMessageError(error);

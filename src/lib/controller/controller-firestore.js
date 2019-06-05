@@ -11,7 +11,7 @@ export const userData = (user) => {
 
 export const getUserData = (uidUser) => {
     const db = firebase.firestore();
-    const docRef = db.collection('user').doc(`${uidUser}`)
+    const docRef = db.collection("user").doc(`${uidUser}`)
 
     return docRef.get()
         .then(data => {
@@ -24,7 +24,7 @@ export const getUserData = (uidUser) => {
         })
 }
 
-export const dataPost = (post) => {
+export const dataPost = (post, state) => {
     const user = firebase.auth().currentUser;
     const db = firebase.firestore();
     db.collection("post").add({
@@ -32,29 +32,37 @@ export const dataPost = (post) => {
         email: user.email,
         uid: user.uid,
         post: post,
-        state: true,
+        state: state,
         date: firebase.firestore.FieldValue.serverTimestamp()
     })
-    .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
-    });
+        .then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function (error) {
+            console.error("Error adding document: ", error);
+        });
 }
 
 export const getCollectionPost = (callback) => {
     const db = firebase.firestore();
-    const allPost = db.collection('post').orderBy("date", "desc")
+    const user = firebase.auth().currentUser;
+
+    const allPost = db.collection("post").orderBy("date", "desc")
     allPost.onSnapshot((querySnapshot) => {
-        const data = []
+        let data = []
         querySnapshot.forEach((doc) => {
+            if (doc.data().state === "private" && doc.data().uid !== user.uid) {
+                return data;
+            } else {
+                data.push({ id: doc.id, ...doc.data() });
+            }
             // doc.data() is never undefined for query doc snapshots
-            data.push({ id: doc.id, ...doc.data()});
+
         });
         callback(data);
-    }) 
+    })
 };
+
 
 export const updatePost = (id, post) => {
     let docRef = firebase.firestore().collection('post').doc(id);

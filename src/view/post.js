@@ -9,10 +9,13 @@ const printPost = (objPost) => {
         <span>publicado por ${objPost.name}</span>
         </span>
         <button data-id="delete${objPost.id}">delete</button>
-        <div>${objPost.post}</div>
+        <div>
+        <textarea id="" cols="30" rows="10" disable>${objPost.post}</textarea>
+        <button id="editPost">Editar</button>
+        </div>
         <span>
-        <button id="btnImg">imagen</button>
-        <button id="btncompartir">compartir</button>
+        <button id="like">like</button>
+        <button id="btn-comentar">comentar</button>
         </span>
     `
     // agegando evento al boton delete
@@ -21,17 +24,32 @@ const printPost = (objPost) => {
     postDelete.addEventListener('click', () => {
         deletePost(objPost)
     });
-    
+
     return divPostElement
 }
 
 export const postView = (objUser, post) => {
     const postTemplate = `
+    <header class="header">
+        <input type="checkbox" class="btn-menu" id="btn-menu">
+        <label class="label" for="btn-menu"><i class="fas fa-bars"></i></label>
+            <nav class="menu">
+                <ul>
+                    <li><a href="...">Editar Perfil</a></li>
+                    <li id="btnSignOut"><a href="">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+    </header>
     <div id="printUser">
     </div>
-    <textarea id="newPost" placeholder="¿Que quieres compartir?"></textarea>
-    <button id="publishPost" type="button">Compartir</button> 
-    <button id="btnSignOut" type="button">Cerrar sesión</button>
+    <div class="container-new-post">
+        <textarea id="newPost" placeholder="¿Que quieres compartir?"></textarea>
+        <select id="state">
+            <option value="public">Tus amigos</option>
+            <option value="private">Solo yo</option>
+        </select>
+        <button id="publishPost" type="button">Compartir</button> 
+    </div>
     <!--printPost-->
     <section>
     <ul id="list-post">

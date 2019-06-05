@@ -1,8 +1,10 @@
 export const viewUser = (user) => {
     const viewUserTemplate  = `
-    <img src="${user.photoUrl}">
-    <h3>${user.name}<h3>
-    <p>PetLover<p>
+    <img class="imgUser"src="${user.photoUrl}">
+    <div class="divInfo">
+        <h3>${user.name}<h3>
+        <p>PetLover<p>
+    </div>
     `
     const divElement = document.createElement('div');
     divElement.innerHTML = viewUserTemplate;

@@ -10,8 +10,8 @@ export const logInView = () => {
     <p id="messageError"></p>
     <button id="btnLogIn" type="button">Log in</button>
     <p>O bien ingresa con...</p>
-    <img id="btnSigInGoogle" src="../img/001-google.png">
-    <img id="btnSingInFb" src="../img/002-facebook.png" >
+    <span id="btnSigInGoogle"><i class="fab fa-google"></i></span>
+    <span id="btnSingInFb"><i class="fab fa-facebook"></i></span>
     <p>¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
     `
     const divElement = document.createElement('div');
