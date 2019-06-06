@@ -1,9 +1,9 @@
 import { dataPost, deletePostId, updatePost } from '../controller/controller-firestore.js'
 
-export const addPost = () => {
-/*     event.preventDefault()
- */ const user = firebase.auth().currentUser;
-    console.log(user)
+export const addPost = (event) => {
+    event.preventDefault()
+ const user = firebase.auth().currentUser;
+    console.log(user.displayName)
     const newPost = document.querySelector('#newPost').value;
     const state = document.querySelector('#stateUser').value;
 
@@ -24,6 +24,7 @@ export const deletePost = (objPost) => {
     
 }
 
-export const postUpdate = (objPost, post) => {
-    updatePost(objPost.id, post)
+export const postUpdate = (objPost, state) => {
+    updatePost(objPost.id, state)
+    
 }
