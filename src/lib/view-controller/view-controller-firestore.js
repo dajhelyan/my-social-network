@@ -24,7 +24,6 @@ export const deletePost = (objPost) => {
     
 }
 
-export const postUpdate = (objPost, state) => {
-    updatePost(objPost.id, state)
-    
-}
+/* export const postUpdate = (objPost, state) => {
+    updatePost(objPost.id,post, state)
+} */

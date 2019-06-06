@@ -61,10 +61,11 @@ export const getCollectionPost = (callback) => {
     }) 
 };
 
-export const updatePost = (id, post) => {
-    let docRef = firebase.firestore().collection('post').doc(id);
+export const updatePost = (postId, post, state) => {
+    let docRef = firebase.firestore().collection('post').doc(postId);
     return docRef.update({
-        post: post
+        post: post,
+        state: state
     })
 }
 

@@ -1,7 +1,9 @@
 import { userSignOut } from '../lib/view-controller/view-controller-firebase.js';
 import { viewUser } from './info-user.js'
-import { addPost, deletePost, postUpdate } from '../lib/view-controller/view-controller-firestore.js'
+import { addPost, deletePost } from '../lib/view-controller/view-controller-firestore.js'
 import { getUser } from '../lib/controller/controller-firebase.js'
+import { updatePost } from '../lib/controller/controller-firestore.js'
+
 
 const printPost = (objPost) => {
     const user = getUser();
@@ -11,11 +13,11 @@ const printPost = (objPost) => {
         <span class="nameUser">
             <span>publicado por ${objPost.name}</span>
         </span>
-        <textarea data-id="posts-user${objPost.id}" disabled>${objPost.post}</textarea>
+        <textarea id="posts-user${objPost.id}" disabled>${objPost.post}</textarea>
         <div id="btn-edit-user">
         ${objPost.uid === user.uid ? `<button type="submit" id="delete${objPost.id}" data-id="delete${objPost.id}">delete</button>
-        <button type="button" data-id="edit${objPost.id}">Editar</button>
-        <select id="stateUser">
+        <button type="button" id="btn-edit${objPost.id}">Editar</button>
+        <select id="edit-privacy${objPost.id}" disabled>
             <option value="public">Mis amigos</option>
             <option value="private">Solo yo</option>
         </select>`: ""}
@@ -29,45 +31,33 @@ const printPost = (objPost) => {
             deletePost(objPost)
         });
 
-        const editPost = divPostElement.querySelector(`#edit${objPost.id}`)
-        editPost.addEventListener('click', (e) => {
-            // const textareaEdit = divPostElement.querySelector(`#post-user${objPost.id}`).value;
-            // const stateEdit  = divPostElement.querySelector('#stateUser').value;
-            /* const textareaEdit = e.target.closest('divPostElement').querySelector('#post-user')
-            if (e.target.textContent === "Editar") {
-                textareaEdit.disabled = false;
-                e.target.textContent = "Guardar"
-                postUpdate(textareaEdit.value, state)
-            } else {
-                textareaEdit.disabled = true;
-                e.target.textContent = "Editar";
-            } */
+        const editPost = divPostElement.querySelector(`#btn-edit${objPost.id}`)
+        const textareaEdit = divPostElement.querySelector(`#posts-user${objPost.id}`)
+        const stateEdit = divPostElement.querySelector(`#edit-privacy${objPost.id}`)
 
-            const disableTextarea = e.target.closest('divPostElement').querySelector('#post-user')
-                /* if (e.target.textContent === "Editar") {
-                    disableTextarea.disabled = false;
-                    e.target.textContent = "Guardar"
-                    postUpdate(textareaEdit, stateEdit)
-                } else {
-                    disableTextarea.disabled = true;
-                    e.target.textContent = "Editar";
-                }  */
-        
-            console.log(disableTextarea);
-            
+        editPost.addEventListener('click', () => {
+            return toggleDisabledTextareaEdit(objPost.id, textareaEdit, stateEdit, editPost)
         })
     }
-
-    
-   
     // agegando evento al boton delete
     // haciendo un querySelector por atributo
-  
-
     return divPostElement
 }
 
+export const toggleDisabledTextareaEdit = (objPost, textareaEdit, stateEdit, btn) => {
+    if (textareaEdit.disabled && stateEdit.disabled) {
 
+
+        textareaEdit.disabled = false;
+        stateEdit.disabled = false;
+        btn.textContent = "Guardar"
+    } else {
+        textareaEdit.disabled = true;
+        stateEdit.disabled = true;
+        btn.textContent = "Editar"
+        return updatePost(objPost, textareaEdit.value, stateEdit.value);
+    }
+}
 
 export const postView = (objUser, post) => {
     const postTemplate = `
