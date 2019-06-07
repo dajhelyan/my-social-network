@@ -7,6 +7,7 @@ export const userData = (user) => {
         photoUrl: user.photoURL,
         uid: user.uid
     })
+    
 }
 
 export const getUserData = (uidUser) => {
@@ -17,18 +18,19 @@ export const getUserData = (uidUser) => {
         .then(data => {
             //console.log(data)
             if (data.exists) {
+                console.log(data.data().user, "2")
                 return data.data()
             } else {
                 console.log('error')
             }
         })
+    
 }
 
 export const dataPost = (user, post, state) => {
-    
     const db = firebase.firestore();
     db.collection("post").add({
-        name: user.displayName,
+        name: user.name,
         email: user.email,
         uid: user.uid,
         post: post,
@@ -45,17 +47,18 @@ export const dataPost = (user, post, state) => {
 
 export const getCollectionPost = (callback) => {
     const db = firebase.firestore();
-    const user = firebase.auth().currentUser;
+    // const user = firebase.auth().currentUser;
     const allPost = db.collection('post').orderBy("date", "desc")
     allPost.onSnapshot((querySnapshot) => {
         const data = []
         querySnapshot.forEach((doc) => {
-            if (doc.data().state === "private" && user.uid !== doc.data().uid) {
+            /* if (doc.data().state === "private" && user.uid !== doc.data().uid) {
                 return data;
             } else {
-                data.push({ id: doc.id, ...doc.data()});
-            }
+                
+            } */
             // doc.data() is never undefined for query doc snapshots
+            data.push({ id: doc.id, ...doc.data()});
         });
         callback(data);
     }) 

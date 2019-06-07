@@ -1,5 +1,5 @@
 import { register, login, signInGoogle, signInFacebook, signOut } from '../controller/controller-firebase.js';
-import { userData } from '../controller/controller-firestore.js'
+import { userData, getUserData } from '../controller/controller-firestore.js'
 export const changeHash = (hash) => { window.location.hash = hash };
 
 const printMessageError = (error) => {
@@ -18,14 +18,13 @@ export const registerUser = () => {
 
     register(email, password)
         .then(res => {
-            const objUSer = {
+            const objUser = {
                 displayName: nameUser,
                 email: email,
                 photoURL: "../img/585e4bf3cb11b227491c339a.png",
                 uid: res.user.uid
-
             }
-            userData(objUSer)
+            userData(objUser)
             changeHash('#/post');
         }).catch((error) => {
             printMessageError(error);
@@ -37,7 +36,8 @@ export const logInUser = () => {
     const passwordExisting = document.querySelector('#passwordExisting').value;
 
     login(emailExisting, passwordExisting)
-        .then(() => {
+        .then((res) => {
+            console.log(res.user, "1")
             return changeHash('#/post');
         }).catch((error) => {
             printMessageError(error);

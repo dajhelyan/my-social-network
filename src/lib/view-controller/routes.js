@@ -26,7 +26,7 @@ export const changeView = (route) => {
     
             stateUser((objUser) => {
                 getCollectionPost((post) => {
-                    console.log(post);
+                    console.log(objUser, "11");
                     
                     container.innerHTML = '';
                     container.appendChild(components.post(objUser, post))

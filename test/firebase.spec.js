@@ -94,7 +94,7 @@ const cbGetUserData = (uid) => new Promise((resolve, reject) => {
 });
 
   
-
+/* 
 describe('observer', () => {
   global.firebase.auth().changeAuthState({
     uid: null
@@ -107,7 +107,7 @@ describe('observer', () => {
       done()
     })
     })
-})
+}) */
 
 /* describe('observer1', () => {
   it ('observar el estado de un usuario y trae su data', (done) => {

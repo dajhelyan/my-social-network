@@ -9,6 +9,7 @@ const printPost = (objPost) => {
     const user = getUser();
     const divPostElement = document.createElement('div');
     // console.log(user.uid )
+    // console.log(objPost)
     divPostElement.innerHTML = `
         <span class="nameUser">
             <span>publicado por ${objPost.name}</span>
@@ -94,7 +95,10 @@ export const postView = (objUser, post) => {
 
     /* const post = divElement.querySelector('#newPost') */
 
-    btnpublishPost.addEventListener('click', addPost)
+    btnpublishPost.addEventListener('click', (event) => {
+        event.preventDefault()
+        addPost(objUser)
+    })
 
     const btnSignOut = divElement.querySelector('#btnSignOut');
     btnSignOut.addEventListener('click', userSignOut)
