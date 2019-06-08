@@ -1,7 +1,7 @@
 
 export const userData = (user) => {
     const db = firebase.firestore();
-    db.collection("user").doc(`${user.uid}`).set({
+    return db.collection("user").doc(`${user.uid}`).set({
         name: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
@@ -29,7 +29,7 @@ export const getUserData = (uidUser) => {
 
 export const dataPost = (user, post, state) => {
     const db = firebase.firestore();
-    db.collection("post").add({
+    return db.collection("post").add({
         name: user.name,
         email: user.email,
         uid: user.uid,

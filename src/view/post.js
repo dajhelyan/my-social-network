@@ -62,6 +62,12 @@ export const toggleDisabledTextareaEdit = (objPost, textareaEdit, stateEdit, btn
 
 export const postView = (objUser, post) => {
     const postTemplate = `
+    <header>
+        <input type="checkbox">
+        <label for="btnSingOut">
+            <span><i class="fas fa-bars"></i></span>
+        </label>
+    </header>
     <div id="printUser">
     </div>
     <div>
@@ -71,7 +77,6 @@ export const postView = (objUser, post) => {
             <option value="private">Solo yo</option>
         </select>
         <button id="publishPost" type="button">Compartir</button> 
-        <button id="btnSignOut" type="button">Cerrar sesión</button>
     </div>
     <!--printPost-->
     <section>
@@ -81,7 +86,7 @@ export const postView = (objUser, post) => {
     `
     const divElement = document.createElement('section');
     divElement.innerHTML = postTemplate;
-
+    // <button id="btnSignOut" type="button">Cerrar sesión</button>
     const printUser = divElement.querySelector('#printUser')
     printUser.appendChild(viewUser(objUser))
 

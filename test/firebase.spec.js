@@ -89,9 +89,9 @@ describe('signOut', () => {
 })
 
 
-const cbGetUserData = (uid) => new Promise((resolve, reject) => {
+/* const cbGetUserData = (uid) => new Promise((resolve, reject) => {
   resolve({ uid })
-});
+}); */
 
   
 /* 
