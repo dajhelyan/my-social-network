@@ -3,12 +3,12 @@ import { logInUser, userSignInGoogle, userSignInFb } from '../lib/view-controlle
 export const logInView = () => {
     const logInTemplate = `
     <img src="../img/social-pet.png" class="logo" width="100%">
-    <div class="d-flex j-content-center align-center">
-        <div>
+    <div class="border-box m-auto form">
+        <div class="txt-align-center">
             <h1 class="tittle">Social Pet</h1>
             <p>¡Bienvenidx, dogLover!</p>
         </div>
-        <div>
+        <div class="container-inputs">
             <input id="emailExisting" type="text" placeholder="Email">
             <input id="passwordExisting" type="password" placeholder="Password">
         </div>

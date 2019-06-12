@@ -6,6 +6,38 @@ body {
     margin: 0;
 }
 
+.border-box {
+    box-sizing: border-box;
+}
+
+.m-auto {
+    margin: auto;
+}
+
+.txt-align-center {
+    text-align: center;
+}
+
+.form {
+    position: fixed;
+    background: whitesmoke;
+}
+
+.container-inputs {
+    padding: 0 55px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+input {
+    margin-bottom: 10px;
+    width: 200px;
+    border-radius: 20px;
+    margin: 6px 0;
+    padding: 8px;
+}
+
 .d-flex {
     display: flex;
 }
