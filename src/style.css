@@ -1,3 +1,104 @@
 .position {
     display: block;
 }
+
+body {
+    margin: 0;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.j-content-center {
+    justify-content: center;
+}
+
+.aling-center {
+    align-items: center;
+}
+
+.tittle {
+    font-family: 'Berkshire Swash', cursive;
+}
+
+header {
+    width: 100%;
+    background: #7d30f9;
+}
+
+/* ocultando checkbox */
+
+#btn-menu {
+    display: none;
+}
+
+header label{
+    display: none;
+}
+
+.fas:hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.3)
+}
+
+
+.fas {
+    font-size: 30px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    border-right: 1px solid #fff;
+}
+
+.menu ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    
+}
+
+.menu li {
+    border-right: 1px solid #fff; 
+}
+
+.menu li a{
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    
+}
+
+.menu li:hover {
+    background: rgba(0, 0, 0, 0.3);
+
+}
+
+@media(max-width:320px) {
+    header label {
+        display: block;
+    }
+
+    .menu {
+        position: absolute;
+        background: #7d30f9;
+        width: 70%;
+        margin-left: -70%;
+        transition: all 0.5s;
+    }
+
+    .menu ul {
+        flex-direction: column;
+    }
+
+    .menu li {
+        border-top: 1px solid #fff;
+    }
+
+    #btn-menu:checked ~ .menu{
+        margin: 0;
+    }
+}

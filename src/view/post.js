@@ -47,8 +47,6 @@ const printPost = (objPost) => {
 
 export const toggleDisabledTextareaEdit = (objPost, textareaEdit, stateEdit, btn) => {
     if (textareaEdit.disabled && stateEdit.disabled) {
-
-
         textareaEdit.disabled = false;
         stateEdit.disabled = false;
         btn.textContent = "Guardar"
@@ -63,10 +61,14 @@ export const toggleDisabledTextareaEdit = (objPost, textareaEdit, stateEdit, btn
 export const postView = (objUser, post) => {
     const postTemplate = `
     <header>
-        <input type="checkbox">
-        <label for="btnSingOut">
-            <span><i class="fas fa-bars"></i></span>
-        </label>
+        <input type="checkbox" id="btn-menu">
+        <label for="btn-menu"><i class="fas fa-bars"></i></label>
+        <nav class="menu">
+            <ul>
+                <li><a>Editar perfil</a></li>
+                <li><a id="btnSingOut">Cerrar sesión</a></li>
+            </ul>    
+        </nav>
     </header>
     <div id="printUser">
     </div>
@@ -105,8 +107,8 @@ export const postView = (objUser, post) => {
         addPost(objUser)
     })
 
-    const btnSignOut = divElement.querySelector('#btnSignOut');
+    const btnSignOut = divElement.querySelector('#btnSingOut');
     btnSignOut.addEventListener('click', userSignOut)
-
+    
     return divElement;
 }

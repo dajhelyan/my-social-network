@@ -30,7 +30,7 @@ export const changeView = (route) => {
                     
                     container.innerHTML = '';
                     container.appendChild(components.post(objUser, post))
-                }) 
+                }, objUser) 
             })
 
             /* getCollectionPost((post) => {
