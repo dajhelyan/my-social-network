@@ -6,6 +6,25 @@ body {
     margin: 0;
 }
 
+.txt-aling-center {
+    text-align: center
+}
+
+/* login */
+
+#container {
+    height: 100vh;
+}
+
+.height-vh {
+    height: 100vh;
+}
+
+.img {
+    max-height: 500px;
+    width: auto;
+}
+
 .border-box {
     box-sizing: border-box;
 }
@@ -14,28 +33,41 @@ body {
     margin: auto;
 }
 
-.txt-align-center {
-    text-align: center;
+.btn-log-in {
+    width: 150px;
+    border-radius: 20px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.tittles {
+    padding: 15px 0;
+    font-size: 25px;
+}
+
+.font-size {
+    font-size: 20px;
 }
 
 .form {
-    position: fixed;
-    background: whitesmoke;
+    height: 555px;
+    margin: auto;
+    padding: 0;
+    text-align: center;
 }
 
-.container-inputs {
-    padding: 0 55px;
+/* .container-inputs {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-}
+    justify-content: center;
+} */
 
 input {
     margin-bottom: 10px;
     width: 200px;
     border-radius: 20px;
-    margin: 6px 0;
-    padding: 8px;
+    margin: 10px 0;
+    padding: 10px;
 }
 
 .d-flex {
@@ -52,6 +84,42 @@ input {
 
 .tittle {
     font-family: 'Berkshire Swash', cursive;
+}
+
+@media(max-width:500px) {
+    .form {
+        height: 500px;
+        margin: 0 auto;
+        padding: 0 55px;
+    }
+    
+    .container-input {
+        text-align: center;
+    }
+
+    .tittles {
+        padding: 10px 0;
+        font-size: 20px;
+    }
+
+    .font-size {
+        font-size: 17px;
+    }
+}
+
+@media(max-width:768px){
+    .form {
+        height: 447px;
+    }
+
+    .logo {
+        max-width: 500px;
+    }
+
+    .img {
+        text-align: center;
+    }
+     
 }
 
 header {

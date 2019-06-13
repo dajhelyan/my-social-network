@@ -2,27 +2,31 @@ import { logInUser, userSignInGoogle, userSignInFb } from '../lib/view-controlle
 
 export const logInView = () => {
     const logInTemplate = `
-    <img src="../img/social-pet.png" class="logo" width="100%">
+    <div class="img">
+        <img src="../img/social-pet.png" class="logo" width="100%">
+    </div>
     <div class="border-box m-auto form">
-        <div class="txt-align-center">
+        <div class="form-container-items">
+        <div class="txt-align-center tittles">
             <h1 class="tittle">Social Pet</h1>
             <p>¡Bienvenidx, dogLover!</p>
         </div>
         <div class="container-inputs">
             <input id="emailExisting" type="text" placeholder="Email">
             <input id="passwordExisting" type="password" placeholder="Password">
+            <button class="btn-log-in" id="btnLogIn" type="button">Log in</button>
         </div>
         <p id="messageError"></p>
-        <button id="btnLogIn" type="button">Log in</button>
-        <p>O bien ingresa con...</p>
+        <p class="font-size">O bien ingresa con...</p>
         <img id="btnSigInGoogle" src="../img/001-google.png">
         <img id="btnSingInFb" src="../img/002-facebook.png" >
-        <p>¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
+        <p class="font-size">¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
+        </div>
     </div>
     `
     const divElement = document.createElement('div');
     divElement.innerHTML = logInTemplate;
-    // divElement.classList.add('d-flex', 'j-content-center', 'align-center');
+    divElement.classList.add('height-vh');
 
 
     const btnLogIn = divElement.querySelector('#btnLogIn');
