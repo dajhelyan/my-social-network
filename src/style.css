@@ -18,11 +18,13 @@ body {
 
 .height-vh {
     height: 100vh;
+    background: ghostwhite;
 }
 
 .img {
     max-height: 500px;
     width: auto;
+    background:#7d1fff;
 }
 
 .border-box {
@@ -38,6 +40,9 @@ body {
     border-radius: 20px;
     margin: 10px 0;
     padding: 10px;
+    background: #6adeada6;
+    font-size: 15px;
+
 }
 
 .tittles {
@@ -54,6 +59,7 @@ body {
     margin: auto;
     padding: 0;
     text-align: center;
+    background: ghostwhite;
 }
 
 /* .container-inputs {
@@ -109,7 +115,7 @@ input {
 
 @media(max-width:768px){
     .form {
-        height: 447px;
+        height: 475px;
     }
 
     .logo {
