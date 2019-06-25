@@ -1,12 +1,11 @@
 import { dataPost, deletePostId, updatePost } from '../controller/controller-firestore.js'
 
-export const addPost = (user) => {
-    const state = document.querySelector('#state').value;
+export const addPost = (objUser) => {
     const newPost = document.querySelector('#newPost').value;
-    
+    const state = document.querySelector('#stateUser').value;
+
     if (newPost !== '') {
-        dataPost(newPost, state, user) 
-        // newPost.innerHTML = '';
+        dataPost(objUser, newPost, state) 
     } else {
         console.log('error')
     }
@@ -21,11 +20,6 @@ export const deletePost = (objPost) => {
     }
 }
 
-export const postUpdate = (objPost, post) => {
-    if (condition) {
-        
-    } else {
-        
-    }
-    updatePost(objPost.id, post)
-}
+/* export const postUpdate = (objPost, state) => {
+    updatePost(objPost.id,post, state)
+} */

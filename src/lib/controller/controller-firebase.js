@@ -28,4 +28,6 @@ export const observer = (callbackGetUserData, cbthatRecivesDataUse) => firebase.
     }
 });
 
+export const getUser = () => firebase.auth().currentUser;
+
 export const signOut = () => firebase.auth().signOut();

@@ -1,12 +1,13 @@
 
 export const userData = (user) => {
     const db = firebase.firestore();
-    db.collection("user").doc(`${user.uid}`).set({
+    return db.collection("user").doc(`${user.uid}`).set({
         name: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
         uid: user.uid
     })
+    
 }
 
 export const getUserData = (uidUser) => {
@@ -17,60 +18,59 @@ export const getUserData = (uidUser) => {
         .then(data => {
             //console.log(data)
             if (data.exists) {
+                /* console.log(data.data().user, "2") */
                 return data.data()
-            } else {
+            } /* else {
                 console.log('error')
-            }
+            } */
         })
 }
 
-export const dataPost = (post, state) => {
-    const user = firebase.auth().currentUser;
+export const dataPost = (user, post, state) => {
     const db = firebase.firestore();
-    db.collection("post").add({
-        name: user.displayName,
+    return db.collection("post").add({
+        name: user.name,
         email: user.email,
         uid: user.uid,
         post: post,
         state: state,
         date: firebase.firestore.FieldValue.serverTimestamp()
     })
-        .then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function (error) {
-            console.error("Error adding document: ", error);
-        });
+    /* .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    }); */
 }
 
-export const getCollectionPost = (callback) => {
+export const getCollectionPost = (callback, user) => {
     const db = firebase.firestore();
-    const user = firebase.auth().currentUser;
-
-    const allPost = db.collection("post").orderBy("date", "desc")
+    const allPost = db.collection('post').orderBy("date", "desc")
     allPost.onSnapshot((querySnapshot) => {
-        let data = []
+        const data = []
         querySnapshot.forEach((doc) => {
-            if (doc.data().state === "private" && doc.data().uid !== user.uid) {
+            if (doc.data().state === "private" && user.uid !== doc.data().uid) {
                 return data;
             } else {
-                data.push({ id: doc.id, ...doc.data() });
+                data.push({ id: doc.id, ...doc.data()});
             }
             // doc.data() is never undefined for query doc snapshots
-
+            
         });
         callback(data);
-    })
+        // console.log(data, "222")
+    }) 
 };
 
-
-export const updatePost = (id, post) => {
-    let docRef = firebase.firestore().collection('post').doc(id);
+export const updatePost = (postId, post, state) => {
+    let docRef = firebase.firestore().collection('post').doc(postId);
     return docRef.update({
-        post: post
+        post: post,
+        state: state
     })
 }
 
 export const deletePostId = (objId) => {
-    firebase.firestore().collection("post").doc(objId).delete();
+    return firebase.firestore().collection("post").doc(objId).delete();
 }
