@@ -1,9 +1,11 @@
 export const viewUser = (user) => {
     const viewUserTemplate  = `
-    <img class="imgUser"src="${user.photoUrl}">
-    <div class="divInfo">
-        <h3>${user.name}<h3>
-        <p>PetLover<p>
+    <div class="container-info-user">
+        <img class="img-user"src="${user.photoUrl}">
+        <div class="div-info">
+            <h3 class="user-name">${user.name}<h3>
+            <p class="margin-0">PetLover<p>
+        </div>
     </div>
     `
     const divElement = document.createElement('div');

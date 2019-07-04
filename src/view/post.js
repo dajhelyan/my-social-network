@@ -72,13 +72,13 @@ export const postView = (objUser, post) => {
     </header>
     <div id="printUser">
     </div>
-    <div>
-        <textarea id="newPost" placeholder="¿Que quieres compartir?"></textarea>
+    <div class="container-publish">
+        <textarea class="textarea-create-post" id="newPost" placeholder="¿Que quieres compartir?"></textarea>
         <select id="stateUser">
-            <option value="public">Mis amigos</option>
-            <option value="private">Solo yo</option>
+            <option value="public"><span><i class="fas fa-user-friends"></i></span></option>
+            <option value="private"><span><i class="fas fa-user"></i><span></option>
         </select>
-        <button id="publishPost" type="button">Compartir</button> 
+        <button class="btn-publish" id="publishPost" type="button">Compartir</button> 
     </div>
     <!--printPost-->
     <section>

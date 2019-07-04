@@ -9,18 +9,20 @@ export const logInView = () => {
         <div class="form-container-items">
         <div class="txt-align-center tittles">
             <h1 class="tittle">Social Pet</h1>
-            <p>¡Bienvenidx, dogLover!</p>
+            <p>¡Bienvenidx, Pet Lover!</p>
         </div>
         <div class="container-inputs">
             <input id="emailExisting" type="text" placeholder="Email">
             <input id="passwordExisting" type="password" placeholder="Password">
             <button class="btn-log-in" id="btnLogIn" type="button">Log in</button>
         </div>
-        <p id="messageError"></p>
-        <p class="font-size">O bien ingresa con...</p>
-        <img id="btnSigInGoogle" src="../img/001-google.png">
-        <img id="btnSingInFb" src="../img/002-facebook.png" >
-        <p class="font-size">¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
+        <div class="font-icon">
+            <p id="messageError"></p>
+            <p class="font-size">O bien ingresa con...</p>
+            <img class="icon" id="btnSigInGoogle" src="../img/001-google.png">
+            <img class="icon" id="btnSingInFb" src="../img/002-facebook.png" >
+            <p class="font-size">¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
+        </div>
         </div>
     </div>
     `

@@ -2,8 +2,10 @@ import { registerUser } from '../lib/view-controller/view-controller-firebase.js
 
 export const registerView = () => {
     const registerTemplate = `
-    <img src="../img/social-pet.png" class="logo" >
-    <h1>Social Pet</h1>
+    <div>
+        <img src="../img/social-pet.png" class="logo" >
+        <div>
+        <h1>Social Pet</h1>
     <p>¡Bienvenidx, dogLover!</p>
     <input id="nameUser" placeholder="Nombres y apellido">
     <input id="email" type="text" placeholder="Email">
