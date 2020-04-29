@@ -1,96 +1,71 @@
-.position {
-    display: block;
-}
 
 body {
     margin: 0;
 }
 
-.txt-aling-center {
-    text-align: center
-}
-
 /* login */
 
-#container {
-    height: 100vh;
-    background: ghostwhite;
-}
-/* 
-.height-vh {
-    height: 100vh;
-    background: ghostwhite;
-} */
-
-.img {
-    max-height: 500px;
-    width: auto;
-    background:#7d1fff;
-}
-
-.border-box {
-    box-sizing: border-box;
-}
-
-.m-auto {
-    margin: auto;
-}
-
-.btn-log-in {
-    width: 150px;
-    border-radius: 20px;
-    margin: 10px 0;
-    padding: 10px;
-    background: #6adeada6;
-    font-size: 15px;
-
-}
-
-.tittles {
-    padding: 15px 0;
-    font-size: 25px;
-}
-
-.font-size {
-    font-size: 20px;
-}
-
-.form {
-    height: 555px;
-    margin: auto;
-    padding: 0;
-    text-align: center;
-    background: ghostwhite;
-}
-
-/* .container-inputs {
+section .figure-logo {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-} */
+    margin: 0;
+    background:#7d1fff;
+    align-items: center;
+    height: 10rem;
+}
 
-input {
-    margin-bottom: 10px;
+section figure .logo-social-pet {
+    margin: 0 auto;
+    width: 12rem; 
+}
+
+section form {
+    display: flex;
+    justify-content: center;
+    background: whitesmoke;
+}
+
+section form .container-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: whitesmoke;
+}
+
+section form .container-form h1 {
+    margin: 0;
+    margin-top: 7px;
+    font-size: 2em;
+}
+
+section form .container-form input {
     width: 200px;
     border-radius: 20px;
-    margin: 10px 0;
-    padding: 10px;
+    margin: 8px 0;
+    padding: 8px;
+    border-color: #6adeada6;
+    border-bottom-style: dashed;
 }
 
-.d-flex {
-    display: flex;
+section form .container-form button {
+    width: 150px;
+    border-radius: 20px;
+    margin: 8px 0;
+    padding: 6px;
+    background: #6adeada6;
+    font-size: 15px;
+    color: inherit;
+    cursor: pointer;
 }
 
-.j-content-center {
-    justify-content: center;
-}
-
-.aling-center {
-    align-items: center;
-}
-
-.tittle {
-    font-family: 'Berkshire Swash', cursive;
+section form .btn-register{
+    width: 150px;
+    border-radius: 20px;
+    margin: 8px 0;
+    padding: 6px;
+    background: #6adeada6;
+    font-size: 15px;
+    color: inherit;
+    cursor: pointer;
 }
 
 @media(max-width:500px) {

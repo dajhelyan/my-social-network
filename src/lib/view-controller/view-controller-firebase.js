@@ -9,65 +9,53 @@ const printMessageError = (error) => {
 
 export const registerPage = () => {
     return changeHash('#/register');
-}
-
-export const registerUser = () => {
-    const nameUser = document.querySelector('#nameUser').value;
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
-
+  }
+  
+  export const userLogin = (email, password) => {
+    login(email, password)
+      .then(() => changeHash('#/post'))
+      .catch((error) => {
+        printMessageError(error);
+      })
+  }
+  
+  export const registerUser = (nameUser, email, password) => {
     register(email, password)
-        .then(res => {
-            const objUser = {
-                displayName: nameUser,
-                email: email,
-                photoURL: "../img/585e4bf3cb11b227491c339a.png",
-                uid: res.user.uid
-            }
-            userData(objUser)
-            changeHash('#/post');
-        }).catch((error) => {
-            printMessageError(error);
-        })
-}
-
-export const logInUser = () => {
-    const emailExisting = document.querySelector('#emailExisting').value;
-    const passwordExisting = document.querySelector('#passwordExisting').value;
-
-    login(emailExisting, passwordExisting)
-        .then((res) => {
-            console.log(res.user, "1")
-            return changeHash('#/post');
-        }).catch((error) => {
-            printMessageError(error);
-        })
-}
-
-export const userSignInGoogle = () => {
+      .then(res => {
+        const objDataUser = {
+          displayName: nameUser,
+          email: email,
+          photoURL: "../img/585e4bf3cb11b227491c339a.png",
+          uid: res.user.uid
+        }
+        userData(objDataUser)
+        changeHash('#/post');
+      }).catch((error) => {
+        printMessageError(error);
+      })
+  }
+  
+  export const userSignInGoogle = () => {
     signInGoogle()
-        .then(res => {
-            userData(res.user);
-            return changeHash('#/post');
-        }).catch((error) => {
-            printMessageError(error);
-        })
-}
-
-export const userSignInFb = () => {
+      .then(res => {
+        userData(res.user);
+        return changeHash('#/post');
+      }).catch((error) => {
+        printMessageError(error);
+      })
+  }
+  
+  export const userSignInFb = () => {
     signInFacebook()
-    .then(res => {
+      .then(res => {
         userData(res.user)
         return changeHash('#/post');
-    }).catch((error) => {
+      }).catch((error) => {
         printMessageError(error);
-    })
-}
-
-export const userSignOut = () => {
+      })
+  }
+  
+  export const userSignOut = () => {
     signOut()
-    .then(() => changeHash('#/login'))
-    .catch((error) => {
-        console.log(error);
-    })
-}
+      .then(() => changeHash('#/login'))
+  }

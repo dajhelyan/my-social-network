@@ -3,7 +3,7 @@ import { observer } from '../controller/controller-firebase.js'
 import { getUserData, getCollectionPost } from '../controller/controller-firestore.js'
 
 export const changeView = (route) => {
-    const container = document.getElementById('container');
+    const container = document.getElementById('root');
     container.innerHTML = '';
     switch (route) {
         case '':

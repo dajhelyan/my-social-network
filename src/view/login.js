@@ -1,50 +1,44 @@
-import { logInUser, userSignInGoogle, userSignInFb } from '../lib/view-controller/view-controller-firebase.js' 
+import { userLogin, userSignInGoogle, userSignInFb } from '../lib/view-controller/view-controller-firebase.js' 
 
 export const logInView = () => {
-    const logInTemplate = `
-    <div class="img">
-        <img src="../img/social-pet.png" class="logo" width="100%">
-    </div>
-    <div class="border-box m-auto form">
-        <div class="form-container-items">
-        <div class="txt-align-center tittles">
-            <h1 class="tittle">Social Pet</h1>
-            <p>¡Bienvenidx, Pet Lover!</p>
+  const sectionElem = document.createElement("section");
+  sectionElem.innerHTML = `
+    <figure class="figure-logo">
+      <img class="logo-social-pet" src="./assets/social-pet.png">
+    </figure>
+    <form>
+      <div class="container-form">
+        <h1>Social Pet</h1>
+        <p>¡Bienvenidx, Pet Lover!</p>
+        <input id="user-email" type="email" placeholder="Email">
+        <input id="user-password" type="password" placeholder="Password">
+        <button class="btn-login" id="btn-login" type="button">Log in</button>
+        <span><p id="messageError"></p></span>
+        <p class="font-size">O bien ingresa con...</p>
+        <div class="container-icons">
+          <img class="icon" id="btn-sign-in-google" src="./assets/001-google.png">
+          <img class="icon" id="btn-sign-in-fb" src="./assets/002-facebook.png" >
         </div>
-        <div class="container-inputs">
-            <input id="emailExisting" type="text" placeholder="Email">
-            <input id="passwordExisting" type="password" placeholder="Password">
-            <button class="btn-log-in" id="btnLogIn" type="button">Log in</button>
-        </div>
-        <div class="font-icon">
-            <p id="messageError"></p>
-            <p class="font-size">O bien ingresa con...</p>
-            <img class="icon" id="btnSigInGoogle" src="../img/001-google.png">
-            <img class="icon" id="btnSingInFb" src="../img/002-facebook.png" >
-            <p class="font-size">¿No tienes una cuenta?<a href="#/register">Regístrate</a></p>
-        </div>
-        </div>
-    </div>
+        <p class="font-size">¿No tienes una cuenta? <a href="#/register">Regístrate</a></p>
+      </div>
+    </form>
     `
-    const divElement = document.createElement('div');
-    divElement.innerHTML = logInTemplate;
-    divElement.classList.add('height-vh');
-
-
-    const btnLogIn = divElement.querySelector('#btnLogIn');
+    const btnLogIn = sectionElem.querySelector('#btn-login');
     btnLogIn.addEventListener('click', () => {
-        logInUser()
-    })
+      const userEmail = document.querySelector('#user-email').value;
+      const userPassword = document.querySelector('#user-password').value;
+      userLogin(userEmail, userPassword)
+    });
+  
+    const btnSignInGoogle = sectionElem.querySelector('#btn-sign-in-google');
+    btnSignInGoogle.addEventListener('click', () => {
+      userSignInGoogle()
+    });
+  
+    const btnSignInFb = sectionElem.querySelector('#btn-sign-in-fb');
+    btnSignInFb.addEventListener('click', () => {
+      userSignInFb()
+    });
 
-    const btnSigInGoogle = divElement.querySelector('#btnSigInGoogle');
-    btnSigInGoogle.addEventListener('click', () => {
-        userSignInGoogle()
-    })
-    
-    const btnSigInFb = divElement.querySelector('#btnSingInFb')
-    btnSigInFb.addEventListener('click', () => {
-        userSignInFb()
-    })
-
-    return divElement;
+  return sectionElem;
 }
